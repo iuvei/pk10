@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>赛车动画</title>
+	
+	<style>
+body{
+	margin:0;
+	padding:0;
+	overflow:hidden;
+}
+.animate-area{
+	positon:relative;
+	height:505px;
+	width:100%;
+}
+.animate-area .road-bg{
+	width:10000px;
+	height:505px;
+	background:url("./images/road_bg.png");
+	position:absolute;
+	right:0;
+	top:0;
+}
+.animate-area .road-bg .road-end{
+	width:123px;
+	float:left;
+	margin-top:110px;
+}
+.animate-area .road-bg .road-begin{
+	width:163px;
+	float:right;
+	margin-top:110px;
+}
+.ready-light{
+	position:absolute;
+	right:30px;;
+	top:20px;;
+}
+.car{
+	position:absolute;
+	z-index:100;
+	right:0;
+}
+@keyframes mymove
+{
+	0% {right:0px;}
+	25% {right:-2px;}
+	50% {right:0px;}
+	75% {right:2px;}
+	100% {right:0px;}
+}
+
+@-webkit-keyframes mymove /*Safari and Chrome*/
+{
+	0% {right:0px;}
+	25% {right:-2px;}
+	50% {right:0px;}
+	75% {right:2px;}
+	100% {right:0px;}
+}
+.car-animate{
+	animation:mymove 0.5s infinite;
+	
+	-webkit-animation:mymove 0.2s infinite; /* Safari 和 Chrome */
+}
+.car1{
+	top:110px;
+}
+.car2{
+	top:150px;
+}
+.car3{
+	top:190px;
+}
+.car4{
+	top:230px;
+}
+.car5{
+	top:270px;
+}
+.car6{
+	top:310px;
+}
+.car7{
+	top:350px;
+}
+.car8{
+	top:388px;
+}
+.car9{
+	top:425px;
+}
+.car10{
+	top:465px;
+}
+.fire{
+	position:absolute;
+	left:0;
+	top:0;
+	display:none;
+}
+.ranking:before{
+         content:"";
+         width:0px;
+         border-bottom:20px solid transparent;
+         border-top:20px solid transparent;
+         border-right:10px solid #ccc;
+         position:absolute;
+         left:-10px;
+         top:0px;
+     }
+.ranking{
+	min-width:25px;
+    height:40px;
+    background:#ccc;
+    display: inline-block;
+    position: absolute;
+	top:-2;
+	left:90px;
+    line-height: 40px;
+    color:#000000;
+    font-size: 20px;
+    text-align: center;
+}
+.number1:before{
+	border-right:10px solid yellow!important;
+}
+.number1{
+	background:yellow!important;
+}
+.number1:after{
+	border-left-color:yellow!important;
+}
+.number2:before{
+	border-right:10px solid #fff!important;
+}
+.number2{
+	background:#fff!important;
+}
+.number2:after{
+	border-left-color:#fff!important;
+}
+.number3:before{
+	border-right:10px solid #666!important;
+}
+.number3{
+	background:#666!important;
+}
+.number3:after{
+	border-left-color:#666!important;
+}
+.ranking:after{
+         content:"";　　
+         width:0px;
+         border-bottom:20px solid transparent;
+         border-top:20px solid transparent;
+         border-left-width:10px;
+         border-left-style: solid;
+         border-left-color:#ccc;
+         position:absolute;
+         right:-10px;
+         top:0px;
+     }
+</style>
+</head>
+
+<body>
+	<div class="animate-area">
+		
+		<div class="road-bg" id="runway">
+			<div class="road-end">
+			<img src="images/road_end.png">
+			</div>
+			<div class="road-begin">
+				<img src="images/road_begin.png">
+			</div>
+			<img src="images/ready_1.png" class="ready-light" id="ready">
+		</div>
+		
+		<div class="car1 car car-animate"><img src="images/car01_0.png"><img class="fire" src="images/fire_1.png"></div>
+		<div class="car2 car car-animate"><img src="images/car02_0.png"><img class="fire" src="images/fire_1.png"></div>
+		<div class="car3 car car-animate"><img src="images/car03_0.png"><img class="fire" src="images/fire_1.png"></div>
+		<div class="car4 car car-animate"><img src="images/car04_0.png"><img class="fire" src="images/fire_1.png"></div>
+		<div class="car5 car car-animate"><img src="images/car05_0.png"><img class="fire" src="images/fire_1.png"></div>
+		<div class="car6 car car-animate"><img src="images/car06_0.png"><img class="fire" src="images/fire_1.png"></div>
+		<div class="car7 car car-animate"><img src="images/car07_0.png"><img class="fire" src="images/fire_1.png"></div>
+		<div class="car8 car car-animate"><img src="images/car08_0.png"><img class="fire" src="images/fire_1.png"></div>
+		<div class="car9 car car-animate"><img src="images/car09_0.png"><img class="fire" src="images/fire_1.png"></div>
+		<div class="car10 car car-animate"><img src="images/car10_0.png"><img class="fire" src="images/fire_1.png"></div>
+	</div>
+
+
+
+<script type="text/javascript" src="jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+
+var result = [5,3,7,6,8,4,1,2,9,10];//比赛结果
+readyLight();
+function readyLight(){
+	var _num = 1;
+	var ready_img = $('#ready');
+	var _car = $('.car');
+	var timer = setInterval(function(){
+		ready_img.attr('src','images/ready_'+_num+'.png');
+		_num ++;
+		if(_num == 4){
+			_num = 1;
+		};
+	},100);
+	
+	setTimeout(function(){
+		// clearInterval(timer);
+		start();
+		_car.removeClass('car-animate').animate({'right':'100px'},500);
+	},2000)
+}
+
+function start(){
+	var runway = $('#runway');
+	var _car = $('.car');
+	runway.animate({left:0},12000,'linear',function(){
+		//alert('动画结束')
+	 });
+	 //2s后随机开始加速
+		var changeSpeed = setInterval(function(){
+			for(var i=0;i<4;i++){
+				var changeSpeedcar = Math.floor(Math.random()*10+1);//随机出加速的赛车号码1-10
+				var speed = randomSeed(100,400);
+				_car.eq(changeSpeedcar-1).animate({'right':speed+'px'},1000);
+			 }
+		},1000);
+	setTimeout(function(){
+		clearInterval(changeSpeed);
+	},6000)	;
+	//开始分胜负；
+	setTimeout(function(){
+		gameResule(result);
+	},8000);
+}
+
+function randomSeed(n,m){
+    var c = m-n+1;  
+    return Math.floor(Math.random() * c + n);
+}
+function gameResule(result){
+	var _car = $('.car');
+	//前三加速
+	_car.eq(result[0]-1).animate({'left':'0px'},4000,function(){
+		$(this).append($('<div class="ranking number1">冠</div>')).children('.fire').css({display:'none'})
+	}).children('.fire').css({display:'block'});
+	_car.eq(result[1]-1).animate({'left':'0px'},4800,function(){
+		$(this).append($('<div class="ranking number2">亚</div>')).children('.fire').css({display:'none'});
+	}).children('.fire').css({display:'block'});
+	_car.eq(result[2]-1).animate({'left':'0px'},4900,function(){
+		$(this).append($('<div class="ranking number2">季</div>')).children('.fire').css({display:'none'});
+	}).children('.fire').css({display:'block'});
+	//其他
+	_car.eq(result[3]-1).animate({'left':'0px'},5300,function(){
+	$(this).append($('<div class="ranking">四</div>'));
+	});
+	_car.eq(result[4]-1).animate({'left':'0px'},5500,function(){
+	$(this).append($('<div class="ranking">五</div>'));
+	});
+	_car.eq(result[5]-1).animate({'left':'0px'},5800,function(){
+	$(this).append($('<div class="ranking">六</div>'));
+	});
+	_car.eq(result[6]-1).animate({'left':'0px'},6000,function(){
+	$(this).append($('<div class="ranking">七</div>'));
+	});
+	_car.eq(result[7]-1).animate({'left':'0px'},6200,function(){
+	$(this).append($('<div class="ranking">八</div>'));
+	});
+	_car.eq(result[8]-1).animate({'left':'0px'},6400,function(){
+	$(this).append($('<div class="ranking">九</div>'));
+	});
+	_car.eq(result[9]-1).animate({'left':'0px'},6500,function(){
+	$(this).append($('<div class="ranking">十</div>'));
+	});
+}
+</script>
+</body>
+</html>
